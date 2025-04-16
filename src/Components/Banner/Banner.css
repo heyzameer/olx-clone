@@ -1,0 +1,97 @@
+/* Parent Container */
+.banner-container {
+  padding-top: 4em;
+  background-color: #f8f9fa; /* Subtle background for contrast */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Wrapper for Banner Content */
+.banner-wrapper {
+  width: 100%;
+  max-width: 1500px; /* Centered and constrained for larger screens */
+}
+
+/* Menu Bar Styling */
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  border-bottom: 1px solid #e0e0e0; /* Subtle separator line */
+}
+
+/* Category Menu */
+.category-menu {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.category-menu span {
+  margin-right: 8px;
+}
+
+.category-menu svg {
+  width: 16px;
+  height: 16px;
+  fill: #333;
+}
+
+/* Quick Options Styling */
+.quick-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.quick-options span {
+  padding: 0.5em;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quick-options span:hover {
+  background-color: #e0e0e0;
+}
+
+/* Banner Image Section */
+.banner-image {
+  margin: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-image img {
+  width: 100%;
+  max-width: 1500px;
+  border-radius: 8px; /* Rounded corners for a modern look */
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 700px) {
+  .quick-options {
+    display: none; /* Hide quick options on smaller screens */
+  }
+
+  .menu-bar {
+    justify-content: center; /* Center-align content for small screens */
+  }
+
+  .banner-image img {
+    width: 100%; /* Ensure full width for small screens */
+    border-radius: 0; /* Remove rounded corners for a clean edge */
+  }
+}

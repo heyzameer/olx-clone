@@ -1,0 +1,195 @@
+/* Header Container */
+.header-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  z-index: 1000;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Content */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Brand Section */
+.brand-name svg {
+  cursor: pointer;
+}
+
+/* Search Sections */
+.place-search,
+.product-search {
+  display: flex;
+  align-items: center;
+  border: 2px solid #002f34;
+  border-radius: 4px;
+  background-color: white;
+  padding: 0 8px;
+}
+
+.place-search input,
+.product-search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 8px;
+}
+
+.place-search input::placeholder,
+.product-search input::placeholder {
+  color: #888;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #002f34;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
+    right: -9px;
+}
+
+.search-button svg {
+  fill: #fff;
+}
+
+/* Language Toggle */
+.language-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.language-toggle span {
+  margin-right: 4px;
+}
+
+/* Login Section */
+.login-section {
+  position: relative;
+}
+
+.login-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #002f34;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-name {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  z-index: 100;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+
+.dropdown-menu button:hover {
+  color: #007bff;
+}
+
+/* Sell Menu */
+/* Sell Menu */
+.sell-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  background-color: #ffce32; /* Bright button-like background */
+  border: 2px solid #ff9900;
+  border-radius: 50px;
+  padding: 8px 16px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sell-menu:hover {
+  background-color: #ff9900;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sell-menu-content {
+  display: flex;
+  align-items: center;
+  color: #fff; /* White text for better contrast */
+}
+
+.sell-menu-content svg {
+  margin-right: 8px; /* Spacing between icon and text */
+}
+
+.sell-link {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #002f34; /* Match branding */
+}
+
+.sell-menu:hover .sell-link {
+  color: #ffffff; /* Change text color on hover */
+}
+
+/* Add animation for better feedback */
+.sell-menu:hover .sell-link {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sell-menu {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .sell-link {
+    font-size: 14px;
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .place-search,
+  .product-search {
+    display: none;
+  }
+
+  .header-content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
