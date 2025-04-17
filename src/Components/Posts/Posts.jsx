@@ -20,7 +20,7 @@ const ProductCard = ({ product, onClick }) => (
       <p className="name">{product.product}</p>
     </div>
     <div className="date">
-      <span>{new Date(product.createAt).toLocaleDateString()}</span>
+    <span>{new Date(product.createAt).toLocaleDateString()}</span>
     </div>
   </div>
 );
@@ -77,7 +77,7 @@ function Posts() {
           <div className="moreView">
             <div className="heading">
               <span>Quick Menu</span>
-              <span>View more</span>
+              {/* <span>View more</span> */}
             </div>
             <div className="cards">
               {products.map((product) => (
@@ -93,7 +93,7 @@ function Posts() {
             <div className="heading">
               <span>Fresh recommendations</span>
             </div>
-            <div className="cards">
+            <div className="cards-2">
               {products.map((product) => (
                 <ProductCard
                   key={product.id}
