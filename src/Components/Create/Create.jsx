@@ -5,8 +5,6 @@ import { FirebaseContext, AuthContext } from '../../store/Context';
 import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const date = new Date()
-
 
 const Create = () => {
   const { user } = useContext(AuthContext);
@@ -17,11 +15,15 @@ const Create = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const validateInputs = () => {
     if (!name || !category || !price || !img) {
       setError('All fields are required.');
+      return false;
+    }
+    if (price <= 0) {
+      setError('Price must be greater than 0.');
       return false;
     }
     setError('');
@@ -29,38 +31,46 @@ const Create = () => {
   };
 
   const handlesubmit = async () => {
+    const date = new Date();
     if (!validateInputs()) return;
     setIsLoading(true);
     try {
       const formData = new FormData();
       formData.append('file', img);
-      formData.append('upload_preset', 'images');
-      formData.append('cloud_name', 'djidbjp55');
+      formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);  // Access upload preset
+      formData.append('cloud_name', import.meta.env.VITE_CLOUDINARY_CLOUD_NAME); // Access cloud name
 
-      const res = await axios.post('https://api.cloudinary.com/v1_1/djidbjp55/image/upload', formData);
+      const res = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData);
       const imageUrl = res.data.secure_url;
-      console.log(imageUrl);
-      console.log(user.uid);
-      const db = getFirestore()
-      addDoc(collection(db, 'products'), {
+      
+      const db = getFirestore();
+      await addDoc(collection(db, 'products'), {
         product: name,
         category,
         price,
         url: imageUrl,
         userId: user.uid,
         createAt: date.toDateString(),
-      })
+      });
+      
       setSuccessMessage('Product uploaded successfully!');
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
-
+      setTimeout(() => navigate('/'), 2000);
     } catch (error) {
-      console.error('Error uploading image or saving product:', error);
-      setError('Failed to upload the product. Please try again.');
-    }
-    finally {
+      console.error('Error:', error);
+      setError(error?.response?.data?.message || 'Failed to upload the product. Please try again.');
+    } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert('File is too large. Please upload a file smaller than 5MB.');
+    } else if (file) {
+      setImg(file);
+    } else {
+      alert('Invalid file type');
     }
   };
 
@@ -81,6 +91,7 @@ const Create = () => {
             onChange={(e) => setName(e.target.value)}
             value={name}
             placeholder="Enter item name"
+            disabled={isLoading}
           />
           <label htmlFor="category">Category</label>
           <input
@@ -91,6 +102,7 @@ const Create = () => {
             onChange={(e) => setCategory(e.target.value)}
             value={category}
             placeholder="Enter item category"
+            disabled={isLoading}
           />
           <label htmlFor="price">Price</label>
           <input
@@ -101,6 +113,7 @@ const Create = () => {
             onChange={(e) => setPrice(e.target.value)}
             value={price}
             placeholder="Enter price"
+            disabled={isLoading}
           />
         </form>
         {img && <img alt="Preview" width="200px" height="200px" src={URL.createObjectURL(img)} />}
@@ -108,11 +121,8 @@ const Create = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) setImg(file);
-              else alert('Invalid file type');
-            }}
+            onChange={handleFileChange}
+            disabled={isLoading}
           />
           <button className="uploadBtn" type="button" onClick={handlesubmit} disabled={isLoading}>
             {isLoading ? 'Uploading...' : 'Upload and Submit'}
@@ -124,5 +134,3 @@ const Create = () => {
 };
 
 export default Create;
-
-

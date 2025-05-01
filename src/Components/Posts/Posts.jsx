@@ -30,6 +30,7 @@ function Posts() {
   const [loading, setLoading] = useState(true);
   const { setPostdetails } = useContext(PostContext);
   const navigate = useNavigate();
+  
 
   const fetchProducts = async () => {
     try {
@@ -80,7 +81,7 @@ function Posts() {
               {/* <span>View more</span> */}
             </div>
             <div className="cards">
-              {products.map((product) => (
+              {products.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
