@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-
+import github_icon from '../../../assets/images/github.png';
 function Footer() {
   const popularLocations = ['Kolkata', 'Mumbai', 'Chennai', 'Pune'];
   const aboutUsLinks = ['About OLX Group', 'Careers', 'Contact Us', 'OLXPeople'];
@@ -15,7 +15,11 @@ function Footer() {
       </div>
       <div className="footer-bottom">
         <p>Other Countries: Pakistan - South Africa - Indonesia</p>
-        <p>Free Classifieds in India. © 2006-2021 OLX</p>
+        <p>Free Classifieds in India. © 2006-2025 OLX</p>
+        <a href="https://github.com/heyzameer" target="_blank" rel="noopener noreferrer">
+  <img src={github_icon} alt="GitHub" className="footer-icon" />
+</a>
+
       </div>
     </footer>
   );

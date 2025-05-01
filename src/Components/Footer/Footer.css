@@ -58,6 +58,13 @@
   margin: 4px 0;
 }
 
+.footer-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 50%; /* optional spacing */
+  ;
+}
+
 /* Responsive Design */
 @media only screen and (max-width: 768px) {
   .footer-content {
